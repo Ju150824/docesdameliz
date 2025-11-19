@@ -27,7 +27,7 @@ public class Main {
 
                 case 1:
                     System.out.print("Tipo (trufa/pudim/empada): ");
-                    String tipo = sc.nextLine();
+                    String tipo = sc.nextLine().toLowerCase();
 
                     System.out.print("Nome: ");
                     String nome = sc.nextLine();
@@ -42,11 +42,33 @@ public class Main {
                     System.out.print("Detalhe (EXATAMENTE como enum): ");
                     String det = sc.nextLine();
 
-                    ProdutoAbstrato p = ProdutoFactory.criarProduto(
-                            tipo, nome, preco, qtd, det
-                    );
+                    // Converte String para Enum antes de passar para a factory
+                    Enum<?> detalheEnum = null;
+                    try {
+                        switch (tipo) {
+                            case "trufa":
+                                detalheEnum = Trufa.SaborTrufa.valueOf(det.toLowerCase());
+                                break;
+                            case "pudim":
+                                detalheEnum = Pudim.TamanhoPudim.valueOf(det.toLowerCase());
+                                break;
+                            case "empada":
+                                // Para empada, a primeira letra maiúscula, pois enum TipoEmpada é Doce/Salgada
+                                detalheEnum = Empada.TipoEmpada.valueOf(
+                                        det.substring(0,1).toUpperCase() + det.substring(1).toLowerCase()
+                                );
+                                break;
+                            default:
+                                System.out.println("Tipo de produto inválido.");
+                        }
 
-                    if (p != null) estoque.adicionarProduto(p);
+                        ProdutoAbstrato p = ProdutoFactory.criarProduto(tipo, nome, preco, qtd, detalheEnum);
+                        if (p != null) estoque.adicionarProduto(p);
+
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("Enum inválido. Cadastro cancelado.");
+                    }
+
                     break;
 
                 case 2:

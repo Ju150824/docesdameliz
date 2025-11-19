@@ -1,3 +1,5 @@
+package projeto;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,16 +12,19 @@ public class Estoque {
         produtos = new ArrayList<>();
         observadores = new ArrayList<>();
     }
+
     public static Estoque getInstance() {
         if (instancia == null) {
             instancia = new Estoque();
         }
         return instancia;
     }
+
     public void adicionarProduto(ProdutoAbstrato p) {
         produtos.add(p);
         System.out.println(" Produto adicionado: " + p.getNome());
     }
+
     public void adicionarEstoque(String nome, int quantidade) {
         for (ProdutoAbstrato p : produtos) {
             if (p.getNome().equalsIgnoreCase(nome)) {
@@ -27,7 +32,6 @@ public class Estoque {
                 System.out.println("Adicionado " + quantidade + " ao estoque de " + nome);
                 notificarObservadores(p);
                 return;
-
             }
         }
         System.out.println(" Produto não encontrado no estoque.");
@@ -58,10 +62,8 @@ public class Estoque {
     }
 
     private void notificarObservadores(ProdutoAbstrato p) {
-
         for (ObservadorInterface o : observadores) {
             o.atualizar(p);
         }
     }
 }
-
