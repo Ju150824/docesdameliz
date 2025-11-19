@@ -3,8 +3,8 @@ import java.util.List;
 
 public class Estoque {
     private static Estoque instancia;
-    private List<Produto> produtos;
-    private List<Observador> observadores;
+    private List<ProdutoAbstrato> produtos;
+    private List<ObservadorInterface> observadores;
 
     private Estoque() {
         produtos = new ArrayList<>();
@@ -16,12 +16,12 @@ public class Estoque {
         }
         return instancia;
     }
-    public void adicionarProduto(Produto p) {
+    public void adicionarProduto(ProdutoAbstrato p) {
         produtos.add(p);
         System.out.println(" Produto adicionado: " + p.getNome());
     }
     public void adicionarEstoque(String nome, int quantidade) {
-        for (Produto p : produtos) {
+        for (ProdutoAbstrato p : produtos) {
             if (p.getNome().equalsIgnoreCase(nome)) {
                 p.adicionarEstoque(quantidade);
                 System.out.println("Adicionado " + quantidade + " ao estoque de " + nome);
@@ -34,7 +34,7 @@ public class Estoque {
     }
 
     public void removerEstoque(String nome, int quantidade) {
-        for (Produto p : produtos) {
+        for (ProdutoAbstrato p : produtos) {
             if (p.getNome().equalsIgnoreCase(nome)) {
                 p.tirarEstoque(quantidade);
                 System.out.println(" Venda registrada de " + quantidade + "x " + nome);
@@ -47,19 +47,19 @@ public class Estoque {
 
     public void listarProdutos() {
         System.out.println("\nEstoque Atual");
-        for (Produto p : produtos) {
+        for (ProdutoAbstrato p : produtos) {
             System.out.println(p);
         }
         System.out.println("\n");
     }
 
-    public void adicionarObservador(Observador o) {
+    public void adicionarObservador(ObservadorInterface o) {
         observadores.add(o);
     }
 
-    private void notificarObservadores(Produto p) {
+    private void notificarObservadores(ProdutoAbstrato p) {
 
-        for (Observador o : observadores) {
+        for (ObservadorInterface o : observadores) {
             o.atualizar(p);
         }
     }
