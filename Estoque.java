@@ -24,9 +24,8 @@ public class Estoque implements Serializable {
         return instancia;
     }
 
-    // ===========================
+
     // Produtos
-    // ===========================
     public void adicionarProduto(ProdutoAbstrato p) {
         produtos.add(p);
         System.out.println("Produto adicionado: " + p.getDescricao());
@@ -105,9 +104,8 @@ public class Estoque implements Serializable {
         return null;
     }
 
-    // ===========================
+
     // Observer
-    // ===========================
     public void adicionarObservador(ObservadorInterface o) {
         if (observadores == null) observadores = new ArrayList<>();
         observadores.add(o);
@@ -120,9 +118,8 @@ public class Estoque implements Serializable {
         }
     }
 
-    // ===========================
+
     // Salvar / Carregar estoque
-    // ===========================
     public void salvarEstoque() {
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("estoque.dat"))) {
             out.writeObject(produtos);

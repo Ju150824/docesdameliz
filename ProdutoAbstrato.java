@@ -1,5 +1,6 @@
 package projeto;
 import java.io.Serializable;
+
 public abstract class ProdutoAbstrato implements Serializable {
     private static final long serialVersionUID = 1L;
 

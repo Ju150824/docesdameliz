@@ -41,7 +41,8 @@ public class Main {
                     int qtd = sc.nextInt();
                     sc.nextLine();
 
-                    System.out.print("Detalhe (EXATAMENTE como enum): ");
+                    //apenas sabores pré existentes podem ser aceitos
+                    System.out.print("Detalhe (sabores já pré existentes): ");
                     String det = sc.nextLine();
 
                     Enum<?> detalheEnum = null;

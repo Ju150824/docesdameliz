@@ -1,5 +1,6 @@
 package projeto;
 
+//Local onde é analisado as baixas nos estoques com o objetivo de retornar caso o estoque esteja critico
 public class AlertaEstoque implements ObservadorInterface {
 
     public static final int ESTOQUE_MINIMO = 5;
