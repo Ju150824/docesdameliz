@@ -1,4 +1,5 @@
 package projeto;
+
 import java.util.Scanner;
 
 public class Main {
@@ -6,6 +7,7 @@ public class Main {
     public static void main(String[] args) {
 
         Estoque estoque = Estoque.getInstance();
+        estoque.carregarEstoque(); // carrega produtos salvos
         estoque.adicionarObservador(new AlertaEstoque());
 
         Scanner sc = new Scanner(System.in);
@@ -42,7 +44,6 @@ public class Main {
                     System.out.print("Detalhe (EXATAMENTE como enum): ");
                     String det = sc.nextLine();
 
-                    // Converte String para Enum antes de passar para a factory
                     Enum<?> detalheEnum = null;
                     try {
                         switch (tipo) {
@@ -53,7 +54,6 @@ public class Main {
                                 detalheEnum = Pudim.TamanhoPudim.valueOf(det.toLowerCase());
                                 break;
                             case "empada":
-                                // Para empada, a primeira letra maiúscula, pois enum TipoEmpada é Doce/Salgada
                                 detalheEnum = Empada.TipoEmpada.valueOf(
                                         det.substring(0,1).toUpperCase() + det.substring(1).toLowerCase()
                                 );
@@ -77,6 +77,7 @@ public class Main {
 
                     System.out.print("Quantidade: ");
                     int add = sc.nextInt();
+                    sc.nextLine();
 
                     estoque.adicionarEstoque(prodAdd, add);
                     break;
@@ -87,6 +88,7 @@ public class Main {
 
                     System.out.print("Quantidade vendida: ");
                     int vend = sc.nextInt();
+                    sc.nextLine();
 
                     estoque.removerEstoque(prodV, vend);
                     break;
@@ -97,6 +99,7 @@ public class Main {
 
                 case 5:
                     System.out.println("Encerrando...");
+                    estoque.salvarEstoque(); // salva antes de fechar
                     break;
 
                 default:

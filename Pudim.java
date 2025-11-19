@@ -8,7 +8,9 @@ public class Pudim extends ProdutoAbstrato {
         super(nome, preco, quantidade);
         this.tamanho = tamanho;
     }
-
+    public TamanhoPudim getTamanho() {
+        return tamanho;
+    }
     @Override
     public String getDescricao() {
         return "Pudim " + tamanho + " - " + getQuantidade() + " unidades.";

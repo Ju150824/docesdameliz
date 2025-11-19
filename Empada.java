@@ -7,6 +7,9 @@ public class Empada extends ProdutoAbstrato  {
         super(nome, preco, quantidade);
         this.tipo = tipo;
     }
+    public TipoEmpada getTipo() {
+        return tipo;
+    }
     @Override
     public String getDescricao() {
         return "Empada " + tipo + " - " + getQuantidade() + " unidades.";

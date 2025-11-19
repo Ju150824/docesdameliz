@@ -9,6 +9,9 @@ public class Trufa extends ProdutoAbstrato {
         super(nome, preco, quantidade);
         this.sabor = sabor;
     }
+    public SaborTrufa getSabor() {
+        return sabor;
+    }
     @Override
     public String getDescricao() {
         return "Trufa sabor:" + sabor + " = " + getQuantidade() + " unidades.";
