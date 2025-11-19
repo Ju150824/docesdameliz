@@ -1,6 +1,7 @@
-public class Empada extends Produto {
-    private String tipo;
-    public Empada (String nome, double preco, int quantidade, String tipo) {
+public class Empada extends ProdutoAbstrato  {
+    public enum TipoEmpada { Doce, Salgada }
+    private TipoEmpada tipo;
+    public Empada (String nome, double preco, int quantidade, TipoEmpada tipo) {
         super(nome, preco, quantidade);
         this.tipo = tipo;
     }
