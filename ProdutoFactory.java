@@ -1,7 +1,8 @@
+package projeto;
 public class ProdutoFactory {
 
-    public static ProdutoAbstrato criarProduto(String tipo, String nome, double preco, int quantidade, Enum<?> detalhe
-    ) {
+
+    public static ProdutoAbstrato criarProduto (String tipo, String nome, double preco, int quantidade, Enum<?> detalhe) {
         switch (tipo.toLowerCase()) {
             case "trufa":
                 return new Trufa(nome, preco, quantidade, (Trufa.SaborTrufa) detalhe);
