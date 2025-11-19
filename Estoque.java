@@ -1,4 +1,67 @@
-package PACKAGE_NAME;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Estoque {
+    private static Estoque instancia;
+    private List<Produto> produtos;
+    private List<Observador> observadores;
+
+    private Estoque() {
+        produtos = new ArrayList<>();
+        observadores = new ArrayList<>();
+    }
+    public static Estoque getInstance() {
+        if (instancia == null) {
+            instancia = new Estoque();
+        }
+        return instancia;
+    }
+    public void adicionarProduto(Produto p) {
+        produtos.add(p);
+        System.out.println(" Produto adicionado: " + p.getNome());
+    }
+    public void adicionarEstoque(String nome, int quantidade) {
+        for (Produto p : produtos) {
+            if (p.getNome().equalsIgnoreCase(nome)) {
+                p.adicionarEstoque(quantidade);
+                System.out.println("Adicionado " + quantidade + " ao estoque de " + nome);
+                notificarObservadores(p);
+                return;
+
+            }
+        }
+        System.out.println(" Produto não encontrado no estoque.");
+    }
+
+    public void removerEstoque(String nome, int quantidade) {
+        for (Produto p : produtos) {
+            if (p.getNome().equalsIgnoreCase(nome)) {
+                p.tirarEstoque(quantidade);
+                System.out.println(" Venda registrada de " + quantidade + "x " + nome);
+                notificarObservadores(p);
+                return;
+            }
+        }
+        System.out.println(" Produto não encontrado no estoque.");
+    }
+
+    public void listarProdutos() {
+        System.out.println("\nEstoque Atual");
+        for (Produto p : produtos) {
+            System.out.println(p);
+        }
+        System.out.println("\n");
+    }
+
+    public void adicionarObservador(Observador o) {
+        observadores.add(o);
+    }
+
+    private void notificarObservadores(Produto p) {
+
+        for (Observador o : observadores) {
+            o.atualizar(p);
+        }
+    }
 }
+

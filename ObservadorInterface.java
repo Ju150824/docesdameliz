@@ -1,5 +1,5 @@
 package projeto;
 
-public interface Observador {
+public interface ObservadorInterface {
     void atualizar(ProdutoAbstrato p);
 }
