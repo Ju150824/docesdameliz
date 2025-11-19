@@ -1,7 +1,7 @@
 
 public class ProdutoFactory {
 
-    public static Produto criarProduto(String tipo, String nome, double preco, int quantidade, String detalhe) {
+    public static ProdutoAbstrato criarProduto(String tipo, String nome, double preco, int quantidade, String detalhe) {
         switch (tipo.toLowerCase()) {
             case "trufa":
                 return new Trufa(nome, preco, quantidade, detalhe);
