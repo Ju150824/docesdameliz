@@ -1,6 +1,4 @@
-package projeto;
 public abstract class ProdutoAbstrato {
-
     private String nome;
     private double preco;
     private int quantidade;
@@ -48,5 +46,4 @@ public abstract class ProdutoAbstrato {
     public String toString() {
         return "Nome: " + nome + ", Preço: R$" + preco + ", Quantidade: " + quantidade;
 
-}
 }
